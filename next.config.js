@@ -1,4 +1,10 @@
-/** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: '/api/v2/:path*',
+        destination: 'https://di8.blanktech.net/api/v2/:path*',
+      },
+    ]
+  },
 }
