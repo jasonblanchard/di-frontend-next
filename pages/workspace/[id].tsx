@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { useRouter } from 'next/router';
 
 import SidebarLayout from 'components/SidebarLayout';
@@ -13,10 +14,14 @@ export default function EntryEditPage() {
     return (
         <SidebarLayout>
             <div>
-                <EntryListExperience />
+                <Suspense fallback={<div>SUSPENDING</div>}>
+                    <EntryListExperience />
+                </Suspense>
             </div>
             <div>
-                <EntryEditExperience id={id as string} />
+                <Suspense fallback={<div>SUSPENDING</div>}>
+                    <EntryEditExperience id={id as string} />
+                </Suspense>
             </div>
         </SidebarLayout>
     )

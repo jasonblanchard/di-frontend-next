@@ -9,16 +9,7 @@ interface EntryEditExperienceProps {
 
 export default function EntryEditExperience({ id }: EntryEditExperienceProps) {
     const idToken = useRecoilValue(idTokenState);
-
-    const { data, isLoading, isError } = useGetEntry({ id, idToken })
-
-    if (isLoading) {
-        return <div>Loading...</div>
-    }
-
-    if (isError) {
-        return <div>Oops :(</div>
-    }
+    const { data } = useGetEntry({ id, idToken })
 
     return (
         <div>

@@ -4,9 +4,16 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 
 import '../styles/globals.css'
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+    },
+  },
+});
 
-function App({ Component, pageProps }: AppProps) {
+
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
@@ -16,4 +23,8 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
-export default App
+// Hack-around to prevent SSR
+// export default dynamic(() => Promise.resolve(App), {
+//   ssr: false,
+// });
+export default App;
